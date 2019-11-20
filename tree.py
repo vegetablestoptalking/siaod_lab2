@@ -19,26 +19,17 @@ def insert(tree, key):
     return tree
 
 
-def delete(tree, key):
-    a = lst()
-    if tree is None:
-        return None
-    elif key < tree.key:
-        return delete(tree.left, key)
-    elif key > tree.key:
-        return delete(tree.right, key)
-    elif key == tree.key:
-        tree = None
-        return tree
-
 def delete_not_unique(tree):
     keys = lst()
     while tree:
         if not keys.find(tree.key):
             keys.append(tree.key)
-            '''not writed'''
+            delete_not_unique(tree.left)
+            delete_not_unique(tree.right)
+
     else:
-        pass
+        tree = None
+        return
 
 
 
